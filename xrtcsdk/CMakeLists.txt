@@ -19,5 +19,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_SYSTEM_NAME}/bin)
 #设置XRTC_DIR为当前目录
 set(XRTC_DIR ${CMAKE_CURRENT_SOURCE_DIR}) 
 
+#解决windows下编译时，出现的一些警告，实参与形参类型不匹配的问题
+if (CMAKE_SYSTEM_NAME MATCHES "Windows")
+	add_definitions(-DUNICODE -D_UNICODE)
+endif()
+
 add_subdirectory("./xrtc")
 add_subdirectory("./examples")

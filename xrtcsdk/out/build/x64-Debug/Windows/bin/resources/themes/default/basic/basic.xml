@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window size="800,600" caption="0,0,0,35" shadowattached="false">
+	<VBox bkcolor="bk_wnd_darkcolor">
+		<!--标题栏-->
+		<HBox width="stretch" height="35" bkcolor="darkcolor">
+			<Label name="title" text="XRTC跨平台SDK-(Windows低延迟推拉流客户端)" valign="center" margin="5, 0, 0, 0" normaltextcolor="white" font="system_bold_12"/>
+			<Control />
+			<Button class="btn_wnd_min" name="minbtn" margin="4,6,0,0"/>
+			<Box width="21" margin="4,6,0,0">
+				<Button class="btn_wnd_max" name="maxbtn" visible="false"/>
+				<Button class="btn_wnd_restore" name="restorebtn" enabled="false" tooltiptext="禁止"/>
+			</Box>
+			<Button class="btn_wnd_close" name="closebtn" margin="4,6,8,0"/>
+		</HBox>
+
+		<HBox>
+			<VBox bordersize="1" bordercolor="splitline_level1" width="260" childmargin="10">
+				<HBox name="btn_mode" height="30">
+					<Option class="circle_option_2" name="opt-vxrtc" group="mode" text="XRTC" margin="5,5,5,10" selected="true" />
+					<Option class="circle_option_2" name="opt-rtmp" group="mode" text="RTMP" margin="0,5,5,10"/>
+					<Option class="circle_option_2" name="opt-player" group="mode" text="PLAYER" margin="0,5,5,10"/>
+				</HBox>
+
+                <HBox height="30" childmargin="10">
+                    <Label font="system_12" text="XRTC服务:"  width="60" height="auto" valign="center" margin="5,0,0,0"/>
+                    <Box bordersize="1" bordercolor="splitline_level1" width="180" >
+                        <RichEdit name="edit_xrtc_host" text="www.str2num.com:8281" margin="10,0,10,0"  font="system_12" width="stretch" height="auto" valign="center" normaltextcolor="black" multiline="false" promptmode="true" prompttext="XRTC服务地址" promptcolor="splitline_level1" autohscroll="true"  />
+                    </Box>
+                </HBox>
+
+				<HBox height="30" childmargin="10">
+					<Label font="system_12" text="UID:"  width="60" height="auto" valign="center" margin="5,0,0,0"/>
+					<Box bordersize="1" bordercolor="splitline_level1" width="180" >
+						<RichEdit name="edit_uid" text="1024" margin="10,0,10,0"  font="system_12" width="stretch" height="auto" valign="center" normaltextcolor="black" multiline="false" promptmode="true" prompttext="UID" promptcolor="splitline_level1" autohscroll="true"  />
+					</Box>
+				</HBox>
+				
+				<HBox height="30" childmargin="10">
+					<Label font="system_12" text="流名称:"  width="60" height="auto" valign="center" margin="5,0,0,0"/>
+					<Box bordersize="1" bordercolor="splitline_level1" width="180" >
+						<RichEdit name="edit_stream_name" text="xrtctest" margin="10,0,10,0"  font="system_12" width="stretch" height="auto" valign="center" normaltextcolor="black" multiline="false" promptmode="true" prompttext="房间ID" promptcolor="splitline_level1" autohscroll="true"  />
+					</Box>
+				</HBox>
+
+				<HBox height="30" childmargin="10">
+					<Label font="system_12" text="摄像头:"  width="60" height="auto" valign="center" margin="5,0,0,0"/>
+					<Combo class="list" name="cam_combo" width="180" height="30" margin="0,0,5,0" padding="6" bkimage="file='../public/combo/normal.png' corner='5,5,30,5'"/>
+				</HBox>
+                <HBox height="30" childmargin="10">
+                    <Label font="system_12" text="麦克风:"  width="60" height="auto" valign="center" margin="5,0,0,0"/>
+                    <Combo class="list" name="mic_combo" width="180" height="30" margin="0,0,5,0" padding="6" bkimage="file='../public/combo/normal.png' corner='5,5,30,5'"/>
+                </HBox>
+				
+				<Button class="btn_global_blue_80x30" text="启动音视频设备" halign="center" valign="center" name="btn_device_start" width="140" height="30"/>
+				<Button class="btn_global_blue_80x30" text="本地预览" halign="center" valign="center" name="btn_prev" width="140" height="30"/>
+				<Button class="btn_global_blue_80x30" text="开始推流" halign="center" valign="center" name="btn_push" width="140" height="30"/>
+
+				<HBox height="30" childmargin="10">
+					<Label font="system_12" text="流名称:"  width="40" height="auto" valign="center" margin="5,0,0,0"/>
+					<Box bordersize="1" bordercolor="splitline_level1" width="150" >
+						<RichEdit name="edit_pull_stream_name" text="xrtctest" margin="10,0,10,0"  font="system_12" width="stretch" height="auto" valign="center" normaltextcolor="black" multiline="false" promptmode="true" prompttext="流ID" promptcolor="splitline_level1" autohscroll="true"  />
+					</Box>
+				</HBox>
+				<Button class="btn_global_blue_80x30" text="开始拉流" halign="center" valign="center" name="btn_pull" width="140" height="30"/>
+			</VBox>
+			
+			<VBox>
+				<HBox>
+					<HBox bkcolor="gray" bordersize="1, 1, 1, 0" bordercolor="splitline_level1">
+						<VideoWnd name="local"/>
+					</HBox>
+					<HBox bkcolor="gray" bordersize="0, 1, 0, 0" bordercolor="splitline_level1">
+						<VideoWnd name="remote1" />
+					</HBox>
+					<HBox bkcolor="gray" bordersize="1, 1, 1, 0" bordercolor="splitline_level1">
+						<Label text="3"/>
+					</HBox>
+				</HBox>
+				<HBox>
+					<HBox bkcolor="gray" bordersize="1, 1, 1, 0" bordercolor="splitline_level1">
+						<Label text="1"/>
+					</HBox>
+					<HBox bkcolor="gray" bordersize="0, 1, 0, 0" bordercolor="splitline_level1">
+						<Label text="2"/>
+					</HBox>
+					<HBox bkcolor="gray" bordersize="1, 1, 1, 0" bordercolor="splitline_level1">
+						<Label text="3"/>
+					</HBox>
+				</HBox>
+				<HBox>
+					<HBox bkcolor="gray" bordersize="1, 1, 1, 0" bordercolor="splitline_level1">
+						<Label text="1"/>
+					</HBox>
+					<HBox bkcolor="gray" bordersize="0, 1, 0, 0" bordercolor="splitline_level1">
+						<Label text="2"/>
+					</HBox>
+					<HBox bkcolor="gray" bordersize="1, 1, 1, 0" bordercolor="splitline_level1">
+						<Label text="3"/>
+					</HBox>
+				</HBox>
+			</VBox>
+			
+		</HBox>
+
+		<!--提示栏-->
+		<HBox name="toast" height="30" bkcolor="blue">
+            <Label text="  网络质量:  " valign="center" normaltextcolor="white"/>
+            <Label name="network_tips" text="" valign="center" normaltextcolor="white"/>
+            <Control />
+			<Label name="toast_text" text="" valign="center" normaltextcolor="white"/>
+			<Control />
+		</HBox>
+
+	</VBox>
+</Window>
