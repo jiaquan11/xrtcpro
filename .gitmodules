@@ -1,0 +1,3 @@
+[submodule "xrtc-third_party/NIM_Duilib_Framework"]
+	path = xrtc-third_party/NIM_Duilib_Framework
+	url = https://github.com/netease-im/NIM_Duilib_Framework.git
