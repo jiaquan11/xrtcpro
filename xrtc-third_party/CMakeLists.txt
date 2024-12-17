@@ -16,7 +16,13 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_SYSTEM_NAME}/lib)
 #默认存放可执行文件的目录
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_SYSTEM_NAME}/bin)
 
+# 设置安装目录
+set(CMAKE_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/${CMAKE_SYSTEM_NAME})
+
+
+add_subdirectory("./libwebrtc")
+
 #只有在Windows平台才会使用duilib的库
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
-	add_subdirectory("./NIM_Duilib_Framework")
+	add_subdirectory("./NIM_Duilib_Framework")  #已编译好，暂时不需要再编译
 endif()

@@ -8,7 +8,7 @@ include_directories(
 	${XRTC_DIR}/../xrtc-third_party/NIM_Duilib_Framework
 )
 
-#设置库文件目录
+#设置第三方库文件目录的路径
 link_directories(
 	${XRTC_DIR}/../xrtc-third_party/out/build/x64-Debug/Windows/lib
 )
