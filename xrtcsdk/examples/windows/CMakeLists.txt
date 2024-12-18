@@ -5,11 +5,13 @@ project(windemo)
 #设置头文件目录
 include_directories(
 	${XRTC_DIR}
+	${XRTC_THIRD_PARTY_DIR}/include
 	${XRTC_DIR}/../xrtc-third_party/NIM_Duilib_Framework
 )
 
 #设置第三方库文件目录的路径
 link_directories(
+	${XRTC_THIRD_PARTY_DIR}/lib
 	${XRTC_DIR}/../xrtc-third_party/out/build/x64-Debug/Windows/lib
 )
 
@@ -23,7 +25,7 @@ add_executable(windemo ${all_src})
 
 
 #链接第三方库
-target_link_libraries(windemo base duilib Imm32 comctl32)
+target_link_libraries(windemo base duilib Imm32 comctl32 xrtc)
 #表示设置一个windows窗口程序，而不是控制台程序
 set_target_properties(windemo PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS /SAFESEH:NO")
 

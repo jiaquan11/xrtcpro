@@ -2,6 +2,7 @@
 
 project(xrtcsdk)
 
+#设置C++标准为C++14
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -45,5 +46,6 @@ if (CMAKE_SYSTEM_NAME MATCHES "Windows")
 	add_definitions(-DUNICODE -D_UNICODE)
 endif()
 
+#添加编译的子模块
 add_subdirectory("./xrtc")
 add_subdirectory("./examples")

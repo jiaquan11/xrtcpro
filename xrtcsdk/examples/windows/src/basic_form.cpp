@@ -4,6 +4,8 @@
 #include "ui_wnd.h"
 #include "main.h"
 
+#include "xrtc/xrtc.h"
+
 const std::wstring BasicForm::kClassName = L"Basic";
 
 BasicForm::BasicForm(MainThread* ui_thread) :
@@ -30,23 +32,8 @@ std::wstring BasicForm::GetWindowClassName() const
 	return kClassName;
 }
 
-void BasicForm::InitWindow()
-{
-	btn_device_start_ = dynamic_cast<ui::Button*>(FindControl(L"btn_device_start"));
-	btn_prev_ = dynamic_cast<ui::Button*>(FindControl(L"btn_prev"));
-	btn_push_ = dynamic_cast<ui::Button*>(FindControl(L"btn_push"));
-	btn_pull_ = dynamic_cast<ui::Button*>(FindControl(L"btn_pull"));
-	edit_host_ = dynamic_cast<ui::RichEdit*>(FindControl(L"edit_xrtc_host"));
-	edit_uid_ = dynamic_cast<ui::RichEdit*>(FindControl(L"edit_uid"));
-	edit_stream_name_ = dynamic_cast<ui::RichEdit*>(FindControl(L"edit_stream_name"));
-	edit_pull_stream_name_ = dynamic_cast<ui::RichEdit*>(FindControl(L"edit_pull_stream_name"));
-	label_network_tips_ = dynamic_cast<ui::Label*>(FindControl(L"network_tips"));
-	
-	InitComboCam();
-	InitComboMic();
-
-	m_pRoot->AttachBubbledEvent(ui::kEventAll, nbase::Bind(&BasicForm::Notify,
-		this, std::placeholders::_1));
+void BasicForm::InitWindow() {
+	xrtc::XRTCEngine::Init();
 }
 
 LRESULT BasicForm::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
