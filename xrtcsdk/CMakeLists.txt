@@ -2,6 +2,9 @@
 
 project(xrtcsdk)
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 #根据系统位数和编译类型，设置不同的编译目录
 if (CMAKE_CL_64) 
     if (CMAKE_BUILD_TYPE MATCHES "Debug")

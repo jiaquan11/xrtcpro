@@ -4,5 +4,7 @@
 namespace xrtc {
 	int test() {
 		rtc::LogMessage::ConfigureLogging("thread");
+
+		return 0;
 	}
 } // namespace xrtc

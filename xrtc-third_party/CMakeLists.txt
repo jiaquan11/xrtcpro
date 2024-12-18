@@ -2,6 +2,10 @@
 
 project(xrtc-third_party)
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+
 #创建CMakeLists.txt编译时，会自动生成一个out目录，用于存放编译生成的文件
 #如下宏变量为系统默认变量，可以直接使用，自动生成相关目录
 #这里的CMAKE_BINARY_DIR在windows上默认指代的是:out\build\x64-Debug
@@ -19,7 +23,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_SYSTEM_NAME}/bin)
 # 设置安装目录
 set(CMAKE_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/${CMAKE_SYSTEM_NAME})
 
+#开启abseil库的安装功能，需要指定开启安装
+set(ABSL_ENABLE_INSTALL true)
 
+add_subdirectory("./abseil-cpp")
 #add_subdirectory("./libwebrtc") #已编译好，暂时不需要再编译
 
 #只有在Windows平台才会使用duilib的库
