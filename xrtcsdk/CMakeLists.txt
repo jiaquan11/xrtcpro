@@ -2,6 +2,21 @@
 
 project(xrtcsdk)
 
+#根据系统位数和编译类型，设置不同的编译目录
+if (CMAKE_CL_64) 
+    if (CMAKE_BUILD_TYPE MATCHES "Debug")
+        set(BUILD_TYPE "x64-Debug")
+    else()
+        set(BUILD_TYPE "x64-Release")
+    endif()
+else()
+    if (CMAKE_BUILD_TYPE MATCHES "Debug")
+        set(BUILD_TYPE "x86-Debug")
+    else()
+        set(BUILD_TYPE "x86-Release")
+    endif()
+endif()
+
 #创建CMakeLists.txt编译时，会自动生成一个out目录，用于存放编译生成的文件
 #如下宏变量为系统默认变量，可以直接使用，自动生成相关目录
 #这里的CMAKE_BINARY_DIR在windows上默认指代的是:out\build\x64-Debug
@@ -18,6 +33,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_SYSTEM_NAME}/bin)
 
 #设置XRTC_DIR为当前目录
 set(XRTC_DIR ${CMAKE_CURRENT_SOURCE_DIR}) 
+
+#设置XRTC_THIRD_PARTY_DIR为第三方库的目录
+set(XRTC_THIRD_PARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../xrtc-third_party/out/install/${BUILD_TYPE}/${CMAKE_SYSTEM_NAME})
 
 #解决windows下编译时，出现的一些警告，实参与形参类型不匹配的问题
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
