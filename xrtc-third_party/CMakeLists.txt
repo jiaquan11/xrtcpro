@@ -26,7 +26,9 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/${CMAKE_SYSTEM_NAME})
 #开启abseil库的安装功能，需要指定开启安装
 set(ABSL_ENABLE_INSTALL true)
 
-add_subdirectory("./abseil-cpp")
+add_subdirectory("./libyuv")
+#add_subdirectory("./libjpeg-turbo")
+#add_subdirectory("./abseil-cpp")
 #add_subdirectory("./libwebrtc") #已编译好，暂时不需要再编译
 
 #只有在Windows平台才会使用duilib的库

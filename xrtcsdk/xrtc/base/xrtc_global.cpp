@@ -1,4 +1,5 @@
 #include "xrtc/base/xrtc_global.h"
+#include <modules/video_capture/video_capture_factory.h>
 
 namespace xrtc {
 
@@ -26,7 +27,8 @@ XRTCGlobal* XRTCGlobal::Intance() {
 XRTCGlobal::XRTCGlobal() :
 	api_thread_(rtc::Thread::Create()),//创建一个普通线程
 	worker_thread_(rtc::Thread::Create()),//创建一个普通线程
-	network_thread_(rtc::Thread::CreateWithSocketServer()){//创建一个带socket的线程
+	network_thread_(rtc::Thread::CreateWithSocketServer()),//创建一个带socket的线程
+	video_device_info_(webrtc::VideoCaptureFactory::CreateDeviceInfo()) {
 	api_thread_->SetName("api_thread", nullptr);
 	api_thread_->Start();
 	worker_thread_->SetName("worker_thread", nullptr);

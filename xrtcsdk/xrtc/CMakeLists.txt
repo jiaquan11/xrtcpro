@@ -7,7 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 file(GLOB all_src
 	./*.cpp
-	./base/*.cpp	
+	./base/*.cpp
+	./device/*.cpp
 )
 
 #引入头文件目录，包括第三方库的头文件目录
@@ -24,7 +25,8 @@ link_directories(
 #指定在Windows上的webrtc使用的宏定义
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
 	add_definitions(-DXRTC_API_EXPORT
-				    -DWEBRTC_WIN)
+				    -DWEBRTC_WIN
+				    -DNOMINMAX)
 endif()
 
 #生成动态库xrtc
@@ -40,5 +42,8 @@ target_link_libraries(xrtc
 					  absl_bad_variant_access
 					  winmm
 					  ws2_32
+					  Strmiids
+					  jpeg-static
+					  yuv
 					  libwebrtc
 )
