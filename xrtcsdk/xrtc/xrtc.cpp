@@ -6,7 +6,7 @@
 
 namespace xrtc {
 
-void XRTCEngine::Init() {
+void XRTCEngine::Init(XRTCEngineObserver* observer) {
 //测试代码
 #if 0
 	/*
@@ -26,6 +26,8 @@ void XRTCEngine::Init() {
 	rtc::LogMessage::LogTimestamps(true);//可以打印时间戳
 	rtc::LogMessage::LogThreads(true);//可以打印线程信息
 	rtc::LogMessage::LogToDebug(rtc::LS_VERBOSE);//可以打印所有级别的日志
+
+	XRTCGlobal::Intance()->RegisterEngineObserver(observer);
 	RTC_LOG(LS_INFO) << "XRTCEngine Init";
 }
 

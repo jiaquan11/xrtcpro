@@ -7,7 +7,8 @@
 
 class MainThread;
 
-class BasicForm : public ui::WindowImplBase
+class BasicForm : public ui::WindowImplBase,
+		          public xrtc::XRTCEngineObserver
 {
 public:
 	BasicForm(MainThread* ui_thread);
@@ -59,6 +60,11 @@ private:
 
 	void ShowToast(const std::wstring& toast, bool err);
 	void CallOnUIThread(const std::function<void(void)>& task);
+
+private:
+	//XRTCEngineObserver
+	void OnVideoSourceSuccess(xrtc::IVideoSource* video_source) override;
+	void OnVideoSourceFailed(xrtc::IVideoSource* video_source, xrtc::XRTCError err) override;
 
 private:
 	MainThread* ui_thread_;

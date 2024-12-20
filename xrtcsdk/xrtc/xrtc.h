@@ -57,9 +57,15 @@ public:
 	virtual void RemoveConsumer(IXRTCConsumer* consumer) = 0;
 };
 
+class XRTC_API XRTCEngineObserver {
+public:
+	virtual void OnVideoSourceSuccess(IVideoSource*) {};
+	virtual void OnVideoSourceFailed(IVideoSource*, XRTCError) {};
+};
+
 class XRTC_API XRTCEngine {
 public:
-	static void Init();
+	static void Init(XRTCEngineObserver* observer);
 	static uint32_t GetCameraCount();
 	static int32_t GetCameraInfo(int index, std::string& device_name, std::string& device_id);
 	static IVideoSource* CreateCamSource(const std::string& cam_id);

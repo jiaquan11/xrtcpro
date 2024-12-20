@@ -22,7 +22,7 @@ CamImpl::~CamImpl() {
 
 void CamImpl::Start() {
 	RTC_LOG(LS_INFO) << "CamImpl Start call";
-	//在当前线程中执行PostTask,异步执行
+	//在当前线程(api_thread)中执行PostTask,异步执行
 	current_thread_->PostTask(webrtc::ToQueuedTask([=] {
 		RTC_LOG(LS_INFO) << "CamImpl Start PostTask";
 		XRTCError err = XRTCError::kNoErr;
@@ -67,7 +67,15 @@ void CamImpl::Start() {
 		} while (0);
 
 		//回调启动结果
-
+		if (err != XRTCError::kNoErr) {
+			if (XRTCGlobal::Intance()->engine_observer()) {
+				XRTCGlobal::Intance()->engine_observer()->OnVideoSourceFailed(this, err);
+			}
+		} else {
+			if (XRTCGlobal::Intance()->engine_observer()) {
+				XRTCGlobal::Intance()->engine_observer()->OnVideoSourceSuccess(this);
+			}
+		}
 	}));
 }
 
