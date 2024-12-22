@@ -2,6 +2,7 @@
 #define XRTCSDK_XRTC_DEVICE_CAM_IMPL_H_
 
 #include <atomic>
+#include <vector>
 #include <rtc_base/thread.h>
 #include <modules/video_capture/video_capture.h>
 #include "xrtc/xrtc.h"
@@ -35,6 +36,8 @@ private:
 	webrtc::VideoCaptureModule::DeviceInfo* device_info_;
 	std::atomic<int> fps_{ 0 };//采集数据回调是多线程的，所以需要使用原子操作
 	std::atomic<int64_t> last_frame_ts_{ 0 };
+	std::atomic<int64_t> start_time_{0};
+	std::vector<IXRTCConsumer*> consumer_list_;
 };
 
 } // namespace xrtc

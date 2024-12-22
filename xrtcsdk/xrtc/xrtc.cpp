@@ -3,6 +3,8 @@
 #include <rtc_base/task_utils/to_queued_task.h>
 #include "xrtc/base/xrtc_global.h"
 #include "xrtc/device/cam_impl.h"
+#include "xrtc/device/xrtc_render.h"
+#include "xrtc/media/chain/xrtc_preview.h"
 
 namespace xrtc {
 
@@ -53,6 +55,20 @@ IVideoSource* XRTCEngine::CreateCamSource(const std::string& cam_id) {
 	//同步方式创建摄像头资源类
 	return XRTCGlobal::Intance()->api_thread()->Invoke<IVideoSource*>(RTC_FROM_HERE, [=]() {
 		return new CamImpl(cam_id);
+	});
+}
+
+XRTCRender* XRTCEngine::CreateRender(void* canvas) {
+	//同步方式创建渲染类
+	return XRTCGlobal::Intance()->api_thread()->Invoke<XRTCRender*>(RTC_FROM_HERE, [=]() {
+		return new XRTCRender(canvas);
+	});
+}
+
+XRTCPreview* XRTCEngine::CreatePreview(IVideoSource* video_source, XRTCRender* render) {
+	//同步方式创建预览类
+	return XRTCGlobal::Intance()->api_thread()->Invoke<XRTCPreview*>(RTC_FROM_HERE, [=]() {
+		return new XRTCPreview(video_source, render);
 	});
 }
 

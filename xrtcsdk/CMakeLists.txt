@@ -43,7 +43,7 @@ set(XRTC_THIRD_PARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../xrtc-third_party/out/ins
 
 #解决windows下编译时，出现的一些警告，实参与形参类型不匹配的问题
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
-	add_definitions(-DUNICODE -D_UNICODE)
+	add_definitions(-DUNICODE -D_UNICODE -DWEBRTC_WIN -DWIN32_LEAN_AND_MEAN)
 endif()
 
 #添加编译的子模块

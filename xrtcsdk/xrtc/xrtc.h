@@ -25,6 +25,8 @@
 namespace xrtc {
 
 class MediaFrame;
+class XRTCRender;
+class XRTCPreview;
 
 enum class XRTCError {
 	kNoErr = 0,
@@ -32,6 +34,9 @@ enum class XRTCError {
 	kVideoNoCapabilitiesErr,
 	kVideoNoBestCapabilitiesErr,
 	kVideoStartCaptureErr,
+	kPreviewNoVideoSourceErr,
+	kChainConnectErr,
+	kChainStartErr,
 };
 
 class IXRTCConsumer {
@@ -61,6 +66,8 @@ class XRTC_API XRTCEngineObserver {
 public:
 	virtual void OnVideoSourceSuccess(IVideoSource*) {};
 	virtual void OnVideoSourceFailed(IVideoSource*, XRTCError) {};
+	virtual void OnPreviewSuccess(XRTCPreview*) {};
+	virtual void OnPreviewFailed(XRTCPreview*, XRTCError) {};
 };
 
 class XRTC_API XRTCEngine {
@@ -69,6 +76,8 @@ public:
 	static uint32_t GetCameraCount();
 	static int32_t GetCameraInfo(int index, std::string& device_name, std::string& device_id);
 	static IVideoSource* CreateCamSource(const std::string& cam_id);
+	static XRTCRender* CreateRender(void* canvas);
+	static XRTCPreview* CreatePreview(IVideoSource* video_source, XRTCRender* render);
 };
 
 } // namespace xrtc
