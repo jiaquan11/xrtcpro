@@ -4,3 +4,6 @@
 [submodule "xrtc-third_party/abseil-cpp"]
 	path = xrtc-third_party/abseil-cpp
 	url = https://github.com/abseil/abseil-cpp.git
+[submodule "xrtc-third_party/x264-164/src/x264"]
+	path = xrtc-third_party/x264-164/src/x264
+	url = https://code.videolan.org/videolan/x264.git

@@ -13,6 +13,7 @@ enum class MainMediaType {
 enum class SubMediaType {
 	kSubTypeCommon,
 	kSubTypeI420,
+	kSubTypeH264,
 };
 
 struct AudioFormat {

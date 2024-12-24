@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "xrtc/xrtc.h"
 #include "xrtc/media/chain/xrtc_preview.h"
+#include "xrtc/media/base/xrtc_pusher.h"
 
 class MainThread;
 
@@ -88,5 +89,6 @@ private:
 	std::atomic<bool> device_init_{ false };
 	xrtc::XRTCPreview* xrtc_preview_ = nullptr;
 	xrtc::XRTCRender* xrtc_render_ = nullptr;
+	xrtc::XRTCPusher* xrtc_pusher_ = nullptr;
 };
 

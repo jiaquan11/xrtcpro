@@ -5,6 +5,7 @@
 #include "xrtc/device/cam_impl.h"
 #include "xrtc/device/xrtc_render.h"
 #include "xrtc/media/chain/xrtc_preview.h"
+#include "xrtc/media/base/xrtc_pusher.h"
 
 namespace xrtc {
 
@@ -69,6 +70,13 @@ XRTCPreview* XRTCEngine::CreatePreview(IVideoSource* video_source, XRTCRender* r
 	//同步方式创建预览类
 	return XRTCGlobal::Intance()->api_thread()->Invoke<XRTCPreview*>(RTC_FROM_HERE, [=]() {
 		return new XRTCPreview(video_source, render);
+	});
+}
+
+XRTCPusher* XRTCEngine::CreatePusher(IVideoSource* video_source) {
+	//同步方式创建推流类
+	return XRTCGlobal::Intance()->api_thread()->Invoke<XRTCPusher*>(RTC_FROM_HERE, [=]() {
+		return new XRTCPusher(video_source);
 	});
 }
 

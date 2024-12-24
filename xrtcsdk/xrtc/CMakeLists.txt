@@ -13,6 +13,7 @@ file(GLOB all_src
 	./media/chain/*.cpp
 	./media/source/*.cpp
 	./media/sink/*.cpp
+	./media/filter/*.cpp
 )
 
 #引入头文件目录，包括第三方库的头文件目录

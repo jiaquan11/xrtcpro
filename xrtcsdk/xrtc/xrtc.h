@@ -27,6 +27,7 @@ namespace xrtc {
 class MediaFrame;
 class XRTCRender;
 class XRTCPreview;
+class XRTCPusher;
 
 enum class XRTCError {
 	kNoErr = 0,
@@ -37,6 +38,7 @@ enum class XRTCError {
 	kPreviewNoVideoSourceErr,
 	kChainConnectErr,
 	kChainStartErr,
+	kPushNoVideoSourceErr,
 };
 
 class IXRTCConsumer {
@@ -47,11 +49,11 @@ public:
 	virtual void OnFrame(std::shared_ptr<MediaFrame> frame) = 0;
 };
 
-class IVideoSource {
+class IMediaSource {
 public:
 	//基类的析构函数必须是虚函数，否则delete指向派生类对象的基类指针时，
 	//只会调用基类的析构函数，而不会调用派生类的析构函数，导致派生类对象的资源无法释放。
-	virtual ~IVideoSource() {}
+	virtual ~IMediaSource() {}
 
 public:
 	virtual void Start() = 0;
@@ -60,6 +62,10 @@ public:
 	virtual void Destroy() = 0;
 	virtual void AddConsumer(IXRTCConsumer* consumer)= 0;
 	virtual void RemoveConsumer(IXRTCConsumer* consumer) = 0;
+};
+
+class IVideoSource : public IMediaSource {
+
 };
 
 class XRTC_API XRTCEngineObserver {
@@ -78,6 +84,7 @@ public:
 	static IVideoSource* CreateCamSource(const std::string& cam_id);
 	static XRTCRender* CreateRender(void* canvas);
 	static XRTCPreview* CreatePreview(IVideoSource* video_source, XRTCRender* render);
+	static XRTCPusher* CreatePusher(IVideoSource* video_source);
 };
 
 } // namespace xrtc

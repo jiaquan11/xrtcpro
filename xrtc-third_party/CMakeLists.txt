@@ -36,3 +36,10 @@ add_subdirectory("./jsoncpp/source")
 if (CMAKE_SYSTEM_NAME MATCHES "Windows")
 	#add_subdirectory("./NIM_Duilib_Framework")  #已编译好，暂时不需要再编译
 endif()
+
+#将编译好的库文件拷贝到指定目录
+install(DIRECTORY 
+    # 安装x264-164
+    ${XRTC_THIRD_PARTY_DIR}/x264-164/out/${BUILD_TYPE}
+    DESTINATION ${XRTC_THIRD_PARTY_DIR}/out/install
+)
